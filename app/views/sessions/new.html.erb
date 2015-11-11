@@ -1,0 +1,14 @@
+<div class="form">
+	<h1>LOG IN HERE</h1>
+
+	<h3><%= flash[:alert] if flash[:alert] %></h3>
+	<h3><%= flash[:nouser] if flash[:nouser] %></h3>
+
+	<%= form_tag '/login', method: :post do %>
+			<li><%= label_tag :email %></li>
+			<p><%= email_field_tag :email %></p>
+			<li><%= label_tag :password %></li>
+			<p><%= password_field_tag :password %></p>
+			<%= button_tag :login, class: "btn" %>
+	<% end %>
+</div>

@@ -1,0 +1,46 @@
+<div class="wrapper-high">
+<h3><%= flash[:created] if flash[:created] %></h3>
+
+<h3><%= "Welcome " + @user.username %></h3>
+<h3><%= flash[:updated] if flash[:updated] %></h3>
+
+	<h1> USER PROFILE </h1>
+	<h2><%= label_tag "Username" %></h2>
+	<p><%= @user.username %></p>
+	<h2><%= label_tag "Name" %></h2>
+	<p><%= @user.fname + " " + @user.lname %></p>
+	<h2><%= label_tag "Email" %></h2>
+	<p><%= @user.email %></p>
+	<h2><%= label_tag "Country" %></h2>
+	<p><%= @user.country %></p>
+	<br><hr><br>
+	
+	<h1> USER POSTS </h1>
+	<div class="post">
+		<% @user.posts.each do |post| %>
+			<p><%= post.body %></p>
+			<h3>Post created at: <%= post.created_at %></h3>
+
+			<% if post.user_id == session[:user_id] %>
+				<h3><%= link_to "Delete", post, method: :delete, data: { confirm: "ARE YOU SUUUUUUURE?"} %></h3>
+			<% end %>
+
+		<% end %>
+	</div>
+	<br>
+	<hr>
+	<br>
+
+	<h1> USER COMMENTS </h1>
+	<% @user.comments.each do |comment| %>
+		<p><%= comment.body %></p>
+		<h3>Comment created at: <%= comment.created_at %></h3>
+
+		<% if comment.user_id == session[:user_id] %>
+			<h3><%= link_to "Delete", method: :delete, data: { confirm: "ARE YOU SUUUUUUURE?"} %></h3>
+		<% end %>
+	<% end %>
+
+
+
+</div>
